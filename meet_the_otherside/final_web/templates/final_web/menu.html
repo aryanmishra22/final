@@ -1,0 +1,18 @@
+{% load django_browser_reload %}
+<div id="menu_container">
+    <h1 style="padding: 1em; text-align: center;">Meet The Other Side</h1>
+    <div id="menu_items">
+        {% if user.is_authenticated %}
+        <a href=""><i class="fa-solid fa-plus"></i><span>New</span></a>
+        <a href=""><i class="fa-solid fa-magnifying-glass"></i><span>Search</span></a>
+        <a href=""><i class="fa-solid fa-arrow-trend-up"></i><span>Trending</span></a>
+        <a href=""><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
+        <a href=""><i class="fa-solid fa-user"></i><span>Profile</span></a>
+        <a href=""><i class="fa-solid fa-right-from-bracket"></i><span>Log Out</span></a>
+        {% else %}
+        <a href="\login"><i class="fa-solid fa-right-to-bracket"></i><span>Log In</span></a>
+        <a href="\register"><i class="fa-solid fa-user-plus"></i><span>Register</span></a>
+        {% endif %}
+        <a href=""><i class="fa-solid fa-circle-info"></i><span>About Us</span></a>
+    </div>
+</div>

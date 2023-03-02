@@ -1,0 +1,40 @@
+{% load static %}
+{% load django_browser_reload %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="../static/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/theme.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    {% include "./menu.html" %}
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px;">
+        <div style="box-shadow: 0px 0px 10px rgba(0,0,0,0.2); border-radius: 1%; padding: 3em; border-radius: 2em; display: flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 1.2em; font-weight: 600;">Log In</span>
+        <div style="padding-top: 6px;">
+            <form action="/login"  method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                {% csrf_token %}
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column;">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter your username...">
+                    </div>
+                </div><br>
+                <div style="display: flex; flex-direction: column;">
+                    <label for="pass1">Password</label>
+                    <input type="password" name="pass1" id="pass1" placeholder="Enter your password...">
+                </div>
+                <div style="padding-left: 3.3em; display: flex; align-items: center;">
+                    <input type="submit" name="submit" value="Log In" class="bg-sky-500 hover:bg-sky-700 py-2 px-8 rounded-full mt-8 text-white " style="cursor: pointer"/>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

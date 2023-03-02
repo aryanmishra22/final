@@ -1,0 +1,43 @@
+@font-face {
+    font-family: Rowdies;
+    src: url(../fonts/Rowdies/Rowdies-Bold.ttf);
+}
+
+#menu_container{
+    height: 100%;
+    width: 20%;
+    background-color: #151417;
+    color: white;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu_container h1 {
+    font-family: Rowdies;
+}
+
+#menu_items{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+#menu_items a{
+    font-size: 1.3em;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1em;
+}
+
+#menu_items a i{
+    padding: 0em 1em;
+}
+
+#menu_items a:hover{
+    color: #AA5EF6;
+}

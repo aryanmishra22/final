@@ -3,5 +3,9 @@ from . import views
 
 
 urlpatterns = [
-     path('', views.Home, name='index'),
+     path('', views.home, name='home'),
+     path('register', views.register, name='register'),
+     path('login', views.login, name='login'),
+     path('logout', views.logout, name='logout'),
+     path("__reload__/", include("django_browser_reload.urls")),
 ]

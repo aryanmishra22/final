@@ -1,83 +1,18 @@
-{% extends "./base.html" %}
-{% block content %}
-    <h1>Home</h1>
-    <div class="border">
-        <h2>Ex-Capitol Police Chief Faults Intelligence Officials and Military in Jan. 6 Attack</h2>
-    <br>
-    <p>This is text a</p>
-    <p>This is text b</p>
-    <p>This is text c</p>
-    </div>
-    <div class="border"> <b>News Reliability: </b> <span id="news_reliability">50</span></div>
-    <div class="border">
-        <span><b>Outlet: </b> The New York Times</span><br>
-    <span><b>Outlet Credibility: </b><span id="outlet_credibility">98</span></span><br>
-    </div>
-   <div class="border">
-    <span><b>Source: </b> Luke Broadwater</span><br>
-    <span><b>Source Credibility: </b> <span id="source_credibility">88
-    </span></span>
-   </div>
-   <div class="border">
-    <h2><b>User: </b> Sam</h2>
-   <h3><b>Followers: </b> 1000</h3>
-   <h4><b>Credibility: </b> 58% </h4>
-   <span>This is text A</span>
-   <select name="samTextA" id="samTextA" onchange="samCredibility(this.value, this.id)">
-    <option value="select" selected> Select a value</option>
-    <option value="fact">fact</option>
-    <option value="misinformation">Misinformation</option>
-    <option value="Misconstrued">Misconstrued</option>
-   </select><br>
-   <span>This is text B</span>
-   <select name="samTextB" id="samTextB" onchange="samCredibility(this.value, this.id)">
-    <option value="select" selected> Select a value</option>
-    <option value="fact">fact</option>
-    <option value="misinformation">Misinformation</option>
-    <option value="Misconstrued">Misconstrued</option>
-   </select>
-   </div>
-   <div class="border">
-    <h2><b>User: </b> Jam</h2>
-   <h3><b>Followers: </b> 100000</h3>
-   <h4><b>Credibility: </b> 78% </h4>
-   <span>This is text A</span>
-   <select name="jamTextA" id="jamTextA">
-    <option value="select" selected> Select a value</option>
-    <option value="fact">fact</option>
-    <option value="misinformation">Misinformation</option>
-    <option value="Misconstrued">Misconstrued</option>
-   </select><br>
-   <span>This is text C</span>
-   <select name="jamTextC" id="jamTextC">
-    <option value="select" selected> Select a value</option>
-    <option value="fact">fact</option>
-    <option value="misinformation">Misinformation</option>
-    <option value="Misconstrued">Misconstrued</option>
-   </select>
-   </div>
-    <script>
-        newsReliability = 50
-        outletCredibility = 98
-        sourceCredibility = 88
-       function samCredibility(value, id){
-        followers = 1000
-        credibility = 58
-        score = 1 *credibility/100
-        if(value == "fact"){
-            document.getElementById("news_reliability").innerHTML = newsReliability + score
-        }
-        else if(value == "misinformation"){
-            document.getElementById("news_reliability").innerHTML = newsReliability - score
-        }
-        else if(value == "Misconstrued"){
-            document.getElementById("news_reliability").innerHTML = newsReliability - (score*2)
-        } else if(value == "select"){
-            document.getElementById("news_reliability").innerHTML = newsReliability
-        }
-        console.log(score)
-        console.log(value)
-        console.log(id)
-       }
-    </script>
-{% endblock %}
+{% load static %}
+{% load django_browser_reload %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="../static/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/theme.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    {% include "./menu.html" %}
+    <div style="height: 10000px;"></div>
+</body>
+</html>
