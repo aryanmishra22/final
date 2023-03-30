@@ -6,6 +6,7 @@
 #menu_container{
     height: 100%;
     width: 20%;
+    min-width: 300px; 
     background-color: #151417;
     color: white;
     position: fixed;

@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
-from .forms import RegisterForm
-from .models import Profile
+from .forms import RegisterForm, PostForm
+from .models import Profile, Post
 
 # Create your views here.
 def home(request):
     user = request.user
-    return render(request, 'final_web/index.html', {})
+    form = PostForm()
+    return render(request, 'final_web/index.html', {'form':form})
 
 def register(request):
     if request.method == 'POST':
@@ -31,7 +32,7 @@ def login(request):
         if user is not None:
             dj_login(request, user)
             fname = user.first_name
-            return render(request, 'final_web/index.html', {'fname': fname})
+            return redirect('home')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('login')
@@ -51,22 +52,19 @@ def post(request):
             if request.method == 'POST':
                 post = Post()
                 post.user = user
-                post.profile = Profile.objects.get(user=user)
-                post.text = request.POST['text']
-                if 'anonymous' in request.POST:
-                    post.anonymous = True
+                post.title = request.POST['title']
+                post.body = request.POST['body']
+                post.reliability = 50
                 post.save()
-                for image in request.FILES.getlist('images'):
-                    ("reached image loop")
-                    post_image = PostImages()
-                    post_image.post = post
-                    post_image.image = image
-                    post_image.save()
+                # for image in request.FILES.getlist('images'):
+                #     ("reached image loop")
+                #     post_image = PostImages()
+                #     post_image.post = post
+                #     post_image.image = image
+                #     post_image.save()
                 return redirect('home')
         else:
-            profile_data = Profile.objects.get(user=user)
-            fname = user.first_name
-            context = {'fname': fname,'profile_data': profile_data, 'username': user.username, 'form': form}
+            context = {'form': form}
             return render(request, 'final_web/index.html', context)
     redirect('home')
 

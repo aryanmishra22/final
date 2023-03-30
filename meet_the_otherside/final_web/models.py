@@ -75,3 +75,23 @@ class Votes(models.Model):
 
     def __str__(self):
         return self.user.username + ' - ' + self.post.title + ' - ' + str(id)
+
+class PostImages(models.Model):
+    post_image_id = models.AutoField(primary_key=True, blank=False, null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='post_pictures')
+
+class CommentImages(models.Model):
+    post_image_id = models.AutoField(primary_key=True, blank=False, null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='post_pictures')
+
+class PostVideos(models.Model):
+    post_video_id = models.AutoField(primary_key=True, blank=False, null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    video = models.FileField(upload_to='post_videos')
+
+class PostUrls(models.Model):
+    post_url_id = models.AutoField(primary_key=True, blank=False, null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    url = models.URLField()

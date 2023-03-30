@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import Post
+
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(label = "Email",widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'}))
     firstname = forms.CharField(label = "First name",widget=forms.TextInput(attrs={'placeholder': 'Enter your first name'}))
@@ -25,9 +26,9 @@ class RegisterForm(UserCreationForm):
         return user
     
 class PostForm(forms.ModelForm):
-    text = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'placeholder': 'What\'s on your mind?', 'onchange': 'character_count()', 'onkeypress': 'character_count()', 'onfocus': 'character_count()' ,'oninput': 'character_count()', 'onkeyup':'character_count()','onpaste':'character_count()'}))
-    anonymous = forms.BooleanField(required=False)
+    title = forms.CharField(max_length=200,widget=forms.TextInput(attrs={'placeholder': 'Title'}))
+    body = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Add your posts, links and images here'}))
     images = forms.ImageField(required=False,widget=forms.ClearableFileInput(attrs={'multiple': True, 'onchange': 'previewImages(this)'}))
     class Meta:
         model = Post
-        fields = ("text", "anonymous", )
+        fields = ("title", "body", )
