@@ -69,12 +69,17 @@ def post(request):
     redirect('home')
 
 def profile(request, username):
+    form = PostForm()
     user = request.user
     if user.is_authenticated:
         profile_user = User.objects.get(username=username)
         profile_data = Profile.objects.get(user=profile_user)
-        print(profile_data)
         fname = user.first_name
-        context = {'fname': fname,'profile_data': profile_data, 'username': user.username}
+        posts = Post.objects.filter(user=profile_user)
+        context = {'fname': fname,'profile_data': profile_data, 'username': user.username, 'form': form , 'posts': posts}
         return render(request, 'final_web/profile.html', context)
     return render(request, 'final_web/login.html', {})
+
+def search(request):
+    form = PostForm()
+    return render(request, 'final_web/search.html', {'form':form})

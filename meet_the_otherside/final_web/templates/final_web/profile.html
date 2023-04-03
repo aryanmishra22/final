@@ -1,12 +1,43 @@
+{% load django_browser_reload %}
+{% load static %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="../static/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/theme.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-    Profile
-</body>
+<body style="display: flex;">
+    {% include "./menu.html" %}
+    <div style="min-width:300px; width: 20%; height: 100%; display: flex; position: relative;"></div>
+    {% if user.is_authenticated %}
+    <div style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;">
+      <div style="display: flex; flex-direction: column;padding: 1em; max-width: 650px; width: 100%;">
+        <div>
+          <div style="display: flex; flex-direction: row; padding: 1em 1em 1em 0em;">
+            <div style="border: black solid; width: 50px; height: 50px; border-radius: 50%;">
+              <a href="profile/{{ friend.from_user.username }}">
+              <img src="{{ profile_data.profile_pic.url }}" style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;" alt="Profile Picture">
+              </a>
+            </div>
+            <div style="display: flex; flex-direction: column; padding-left: 10px;">
+              <span style="color: white; font-size: 2em; font-weight: 600; ">{{ profile_data.user.first_name }} {{profile_data.user.last_name}}</span>
+             <span style="color: grey">@{{ profile_data.user.username }}</span>
+             <span style="color: grey; padding-top: 10px;">{{ profile_data.bio }}</span>
+            </div>
+          </div>
+        </div>
+       {% for post in posts %}
+        {% include "./post.html" %}
+       {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    {% endif %}
+  </body>
 </html>
